@@ -1,6 +1,6 @@
 import Navbar from '../Navbar'
 import Footer from '../Footer'
-import Main from '../main'
+import Main from '../Main'
 
 
 
