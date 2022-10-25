@@ -4,7 +4,6 @@ import hygraphClient, { gql } from './hygraph-client.js'
 
 
 export async function allCategories() {
-  console.log('hi from allcategoreis')
     const query = gql`query MyQuery {
       categories {
         id
@@ -17,7 +16,6 @@ export async function allCategories() {
       try {
         const {categories} = await hygraphClient.request(query)
 
-        console.log({categories})
         return categories
       } catch (error) {
         console.log(error)
@@ -49,7 +47,6 @@ export async function getCategoryBySlug(slug) {
 
       try {
         const {category} = await hygraphClient.request(query, {slug})
-        console.log({category})
         return category
       } catch (error) {
         console.log(error)

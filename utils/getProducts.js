@@ -21,7 +21,6 @@ export async function allProducts() {
 
         try {
             const {products} = await hygraphClient.request(query)
-            console.log({products})
             return products
         } catch (error) {
             console.log(error)
@@ -45,7 +44,6 @@ export async function getProductBySlug(slug) {
       `
         try {
             const {product} = await hygraphClient.request(query, {slug})
-            console.log({product})
             return product
         } catch (error) {
             console.log(error)

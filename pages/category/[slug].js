@@ -8,16 +8,13 @@ import { allCategories, getCategoryBySlug } from '../../utils/getCategories'
 
 export async function getStaticPaths() {
     const categories = await allCategories()
-    console.log({categories})
     const paths = categories.map((category) => ({
         params: { slug: category.slug },
     }))
-    console.log({paths})
     return { paths, fallback: false }
 }
 
 export async function getStaticProps({ params }) {
-    console.log({params})
     const category = await getCategoryBySlug(params.slug)
 
     return {
@@ -26,7 +23,6 @@ export async function getStaticProps({ params }) {
 }
 
 export default function Page({category}) {
-    console.log(category)
     return (<>
     <Hero 
         title={category.name}
