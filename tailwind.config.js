@@ -9,6 +9,9 @@ module.exports = {
       gridTemplateRows: {
         '[auto,auto,1fr]': 'auto auto 1fr',
       },
+      colors: {
+        'indigo-600': 'rgb(102,99,253)'
+      }
     },
   },
   plugins: [
