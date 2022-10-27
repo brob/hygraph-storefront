@@ -52,6 +52,7 @@ export async function getCampaignBySlug(slug) {
                 products {
                     name
                    slug
+                   price
                    images {
                      url
                    }

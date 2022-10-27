@@ -63,7 +63,7 @@ export default function Page({ product, reviews }) {
                         style={{ maxHeight: "300px", width: "auto" }}
                         src={product.images[0].url}
                     />
-                    )}
+                )}
                 <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">{product.name}</h1>
             </div>
 
