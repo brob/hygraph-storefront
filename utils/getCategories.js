@@ -1,6 +1,4 @@
-import tmpCategories from '../tmp_data/categories.js'
 import hygraphClient, { gql } from './hygraph-client.js'
-// TODO: get this from hygraph instead
 
 
 export async function allCategories() {

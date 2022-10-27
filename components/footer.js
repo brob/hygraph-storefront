@@ -62,7 +62,7 @@ return (
         </h6>
         <ul >
         {navigation.map((category) => (
-            <li className="mb-4"><a key={category.slug} href={`/category/${category.slug}`} className="text-base font-medium text-gray-500 hover:text-gray-900">
+            <li key={category.slug} className="mb-4"><a href={`/category/${category.slug}`} className="text-base font-medium text-gray-500 hover:text-gray-900">
             {category.name}
             </a></li>
         ))}

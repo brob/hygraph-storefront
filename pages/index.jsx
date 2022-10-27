@@ -21,12 +21,11 @@ const Home = function(props) {
       <Hero 
         title="The best bikes in multiple styles" 
         description='Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua.'
-        button
+        button={{text: 'Shop Now', link: '/shop'}}
         />
       <section className='mt-20'>
-      <h2 className="text-2xl font-bold tracking-tight text-gray-900">Featured Products</h2>
 
-      <ProductGrid products={props.products} />
+      <ProductGrid title="Featured Products" products={props.products} />
       </section>
     </>
   )
