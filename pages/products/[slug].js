@@ -27,7 +27,7 @@ export async function getStaticProps({ params }) {
 export default function Page({ product, reviews }) {
 
     return (<>
-        <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
+        {(product.images.length > 1) && (<div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
             <div className="aspect-w-3 aspect-h-4 hidden overflow-hidden rounded-lg lg:block">
                 <img
                     src={product.images[0].url}
@@ -37,30 +37,33 @@ export default function Page({ product, reviews }) {
             <div className="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
                 <div className="aspect-w-3 aspect-h-2 overflow-hidden rounded-lg">
                     <img
-                        src={product.images}
-                        alt={product.imageAlt}
+                        src={product.images[1].url}
                         className="h-full w-full object-cover object-center"
                     />
                 </div>
                 <div className="aspect-w-3 aspect-h-2 overflow-hidden rounded-lg">
                     <img
-                        src={product.imageSrc}
-                        alt={product.imageAlt}
+                        src={product.images[2].url}
+
                         className="h-full w-full object-cover object-center"
                     />
                 </div>
             </div>
             <div className="aspect-w-4 aspect-h-5 sm:overflow-hidden sm:rounded-lg lg:aspect-w-3 lg:aspect-h-4">
                 <img
-                    src={product.imageSrc}
-                    alt={product.imageAlt}
+                    src={product.images[3].url}
                     className="h-full w-full object-cover object-center"
                 />
             </div>
-        </div>
+        </div>)}
         <div className="mx-auto max-w-2xl px-4 pt-10 pb-16 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pt-16 lg:pb-24">
             <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
-
+                {(product.images.length === 1) && (
+                    <img
+                        style={{ maxHeight: "300px", width: "auto" }}
+                        src={product.images[0].url}
+                    />
+                    )}
                 <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">{product.name}</h1>
             </div>
 
