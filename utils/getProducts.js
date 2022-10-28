@@ -9,23 +9,29 @@ function averageRating(reviews) {
 }
 
 export async function allProducts() {
-    const query = gql`query MyQuery {
-        products {
-          slug
-          name
-          price
-          images(first: 1) {
-            url
-            width
-            height
+    const query = gql`query GetAllBikes {
+      bikes
+      {
+        bikeName
+        slug
+        bcBikeData{
+          data{
+            name
+            price
+            availability
+            images {
+              url_thumbnail
+            }
           }
         }
       }
+    }
       `
 
         try {
-            const {products} = await hygraphClient.request(query)
-            return products
+            const {bikes} = await hygraphClient.request(query)
+            console.log({bikes})
+            return bikes
         } catch (error) {
             console.log(error)
         }
@@ -34,29 +40,45 @@ export async function allProducts() {
 }
 
 export async function getProductBySlug(slug) {
-    const query = gql`query MyQuery($slug: String) {
-        product(where: {slug: $slug}) {
-          name
-          price
-          slug
-          description
-          faunaReviews {
-            _ts
-            _id
+    const query = gql`query GetSingleBike($slug: String!) {
+      bike(where: {slug: $slug}) {
+        bikeName
+        categories
+        bcBikeData{
+          data{
             name
-            content
-            rating
-          }
-          images(first: 4) {
-            url
+            description
+            price
+            availability
+            
+            # this has all of the component data for the bikes
+            # For EMTBs only you get two additional fields - Motor and Battery
+            custom_fields {
+              name
+              value
+            }
+            images{
+              url_zoom
+              url_tiny
+              url_standard
+              url_thumbnail
+            }
+            variants{
+              inventory_level
+              option_values{
+                label
+              }
+            }
           }
         }
       }
+    }
       `
         try {
-            let {product} = await hygraphClient.request(query, {slug})
-            product.averageRating = averageRating(product.faunaReviews)
-            return product
+            let {bike} = await hygraphClient.request(query, {slug})
+            // bike.averageRating = averageRating(bike.faunaReviews)
+            bike = {...bike, ...bike.bcBikeData.data}
+            return bike
         } catch (error) {
             console.log(error)
         }
