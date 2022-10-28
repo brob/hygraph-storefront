@@ -2,7 +2,11 @@ import products from '../tmp_data/products.js'
 import hygraphClient, { gql } from './hygraph-client.js'
 
 // TODO: get this from hygraph instead
-
+// Average review.rating for a product
+function averageRating(reviews) {
+  const total = reviews.reduce((acc, review) => acc + review.rating, 0)
+  return Math.floor(total / reviews.length)
+}
 
 export async function allProducts() {
     const query = gql`query MyQuery {
@@ -36,6 +40,13 @@ export async function getProductBySlug(slug) {
           price
           slug
           description
+          faunaReviews {
+            _ts
+            _id
+            name
+            content
+            rating
+          }
           images(first: 4) {
             url
           }
@@ -43,7 +54,8 @@ export async function getProductBySlug(slug) {
       }
       `
         try {
-            const {product} = await hygraphClient.request(query, {slug})
+            let {product} = await hygraphClient.request(query, {slug})
+            product.averageRating = averageRating(product.faunaReviews)
             return product
         } catch (error) {
             console.log(error)

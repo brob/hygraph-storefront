@@ -4,6 +4,8 @@ import Image from 'next/image'
 import { allProducts, getProductBySlug } from '../../utils/getProducts'
 import { StarIcon } from '@heroicons/react/20/solid'
 import Head from 'next/head'
+import Review from '../../components/Review'
+import Stars from '../../components/Stars'
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
@@ -77,23 +79,12 @@ export default function Page({ product, reviews }) {
                 <p className="text-3xl tracking-tight text-gray-900">${product.price}</p>
                 {/* Reviews */}
                 <div className="mt-6">
-                    <h3 className="sr-only">Reviews</h3>
+                    <h3 className="text-2xl font-bold tracking-tight text-gray-900">Reviews</h3>
                     <div className="flex items-center">
-                        <div className="flex items-center">
-                            {[0, 1, 2, 3, 4].map((rating) => (
-                                <StarIcon
-                                    key={rating}
-                                    className={classNames(
-                                        reviews.average > rating ? 'text-gray-900' : 'text-gray-200',
-                                        'h-5 w-5 flex-shrink-0'
-                                    )}
-                                    aria-hidden="true"
-                                />
-                            ))}
-                        </div>
+                        <Stars rating={product.averageRating} />
                         <p className="sr-only">{reviews.average} out of 5 stars</p>
-                        <a href={reviews.href} className="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500">
-                            {reviews.totalCount} reviews
+                        <a href="#reviews" className="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500">
+                            {product.faunaReviews.length} reviews
                         </a>
                     </div>
                 </div>
@@ -114,6 +105,16 @@ export default function Page({ product, reviews }) {
                     </div>
                 </div>
             </div>
+        </div>
+        <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
+            {product?.faunaReviews?.length > 0 && (<>
+                <h3 id="reviews" className="text-2xl font-bold tracking-tight text-gray-900">Reviews</h3>
+                <div className='grid grid-cols-1 divide-y'>
+                    {product.faunaReviews.map((review) => (
+                        <Review key={review._id} review={review} />
+                    ))}
+                </div>
+            </>)}
         </div>
 
     </>)
