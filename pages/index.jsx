@@ -18,6 +18,9 @@ const Home = function(props) {
 
   return (
     <>
+      <Head>
+        <title>Welcome to the Hygraph Shop</title>
+      </Head>
       <Hero 
         title="The best bikes in multiple styles" 
         description='Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua.'
