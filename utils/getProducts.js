@@ -83,7 +83,7 @@ export async function getProductBySlug(slug) {
       `
         try {
             let {bike} = await hygraphClient.request(query, {slug})
-            // bike.averageRating = averageRating(bike.faunaReviews)
+            bike.averageRating = averageRating(bike.faunaReviews)
             bike = {...bike, ...bike.bcBikeData.data}
             return bike
         } catch (error) {
