@@ -12,7 +12,7 @@ function classNames(...classes) {
 
 export async function getStaticPaths() {
     const products = await allProducts()
-    console.log({products})
+
     const paths = products.map((product) => ({
         params: { slug: product.slug },
     }))
@@ -22,7 +22,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
 
     const product = await getProductBySlug(params.slug)
-    console.log({"images": product.images})
+
     const reviews = { href: '#', average: 4, totalCount: 117 }
     return {
         props: { product, reviews },

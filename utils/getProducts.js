@@ -30,7 +30,7 @@ export async function allProducts() {
 
         try {
             const {bikes} = await hygraphClient.request(query)
-            console.log({bikes})
+
             return bikes
         } catch (error) {
             console.log(error)
@@ -44,6 +44,13 @@ export async function getProductBySlug(slug) {
       bike(where: {slug: $slug}) {
         bikeName
         categories
+        faunaReviews {
+          content
+          productId
+          rating
+          _ts
+          _id
+        }
         bcBikeData{
           data{
             name
