@@ -1,4 +1,6 @@
+import Head from "next/head"
 import Hero from "../../components/Hero"
+
 import ProductGrid from "../../components/ProductGrid"
 import { allCampaigns, getCampaignBySlug } from "../../utils/getCampaigns"
 
@@ -47,6 +49,9 @@ export const getStaticPaths = async () => {
 
     return (
       <>
+        <Head>
+          <title>{page.title}</title>
+        </Head>
         <Hero
           title={page.title}
           description={page.description.text}

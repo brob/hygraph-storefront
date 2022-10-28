@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import { allProducts, getProductBySlug } from '../../utils/getProducts'
 import { StarIcon } from '@heroicons/react/20/solid'
+import Head from 'next/head'
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
@@ -27,6 +28,9 @@ export async function getStaticProps({ params }) {
 export default function Page({ product, reviews }) {
 
     return (<>
+        <Head>
+            <title>{product.name}</title>
+        </Head>
         {(product.images.length > 1) && (<div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
             <div className="aspect-w-3 aspect-h-4 hidden overflow-hidden rounded-lg lg:block">
                 <img

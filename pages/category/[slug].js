@@ -1,5 +1,4 @@
-// Product detail pages generated from utils/getProducts.js
-// Path: /pages/products/[slug].js
+import Head from 'next/head'
 import Image from 'next/image'
 import ProductGrid from '../../components/ProductGrid'
 import Hero from '../../components/Hero'
@@ -24,6 +23,9 @@ export async function getStaticProps({ params }) {
 
 export default function Page({ category }) {
     return (<>
+        <Head>
+          <title>{category.name}</title>
+        </Head>
         <Hero
             title={category.name}
             description={category.description}
