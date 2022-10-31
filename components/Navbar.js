@@ -6,20 +6,6 @@ import {
 } from '@heroicons/react/24/outline'
 import navigation from '../utils/navigation'
 
-const categories = [
-  {
-    name: 'T-shirts',
-    slug: 't-shirts'
-  },
-  {
-    name: 'Hoodies',
-    slug: 'hoodies'
-  },
-  {
-    name: 'Accessories',
-    slug: 'accessories'
-  }
-]
 
 export default function Navbar() {
   return (

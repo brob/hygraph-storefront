@@ -3,8 +3,7 @@ import hygraphClient, { gql } from './hygraph-client.js'
 
 export async function allCategories() {
     const query = gql`query MyQuery {
-      categories {
-        id
+      bikeCategories{
         slug
         name
       }
@@ -12,9 +11,8 @@ export async function allCategories() {
     
       `
       try {
-        const {categories} = await hygraphClient.request(query)
-
-        return categories
+        const {bikeCategories} = await hygraphClient.request(query)
+        return bikeCategories
       } catch (error) {
         console.log(error)
       }
@@ -23,29 +21,49 @@ export async function allCategories() {
 
 export async function getCategoryBySlug(slug) {
 
-    const query = `query getCategoryBySlug($slug: String) {
-      category(where: {slug: $slug}) {
-        name
+  const query = `
+    query getCategoryBySlug($slug: String) {
+      bikeCategory(where: {slug: $slug}) {
         slug
-        description
-        products {
-          price
-          slug
-          images(first: 1) {
-            height
-            width
-            url(transformation: {image: {resize: {width: 300}}})
-          }
-          name
+        name
+        bcId
+        description {
+          html
         }
+        id
       }
     }
     
       `
 
+      const productsQuery = `
+      query GetBikesByCategoryId($bcId: Int!) {
+        bikes(where: {categories_contains_some: [$bcId]}) {
+          bikeName
+          id
+          slug
+          bcBikeData {
+            data {
+              name
+              price
+              availability
+              images {
+                url_zoom
+              }
+            }
+          }
+        }
+      }
+      `
+
       try {
-        const {category} = await hygraphClient.request(query, {slug})
-        return category
+        let {bikeCategory} = await hygraphClient.request(query, {slug})
+        console.log({bikeCategory})
+        const products = await hygraphClient.request(productsQuery, {bcId: bikeCategory.bcId})
+        const categoryWithProducts = {...bikeCategory, "products": products.bikes}
+        
+        console.log({categoryWithProducts})
+        return categoryWithProducts
       } catch (error) {
         console.log(error)
       }

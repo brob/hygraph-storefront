@@ -7,6 +7,7 @@ import { allCategories, getCategoryBySlug } from '../../utils/getCategories'
 
 export async function getStaticPaths() {
     const categories = await allCategories()
+
     const paths = categories.map((category) => ({
         params: { slug: category.slug },
     }))
@@ -15,7 +16,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
     const category = await getCategoryBySlug(params.slug)
-
+    console.log({category})
     return {
         props: { category },
     }

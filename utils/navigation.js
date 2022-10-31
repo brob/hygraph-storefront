@@ -1,14 +1,14 @@
 export default [
-    {
-      name: 'T-shirts',
-      slug: 't-shirts'
-    },
-    {
-      name: 'Hoodies',
-      slug: 'hoodies'
-    },
-    {
-      name: 'Accessories',
-      slug: 'accessories'
-    }
-  ]
+  {
+    name: 'EMTB',
+    slug: 'emtb'
+  },
+  {
+    name: 'Trail Bikes',
+    slug: 'trail-bikes'
+  },
+  {
+    name: 'Enduro Bikes',
+    slug: 'enduro-bikes'
+  }
+]
