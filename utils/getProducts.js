@@ -13,6 +13,7 @@ export async function allProducts() {
       bikes
       {
         bikeName
+        id
         slug
         bcBikeData{
           data{
@@ -20,7 +21,7 @@ export async function allProducts() {
             price
             availability
             images {
-              url_thumbnail
+              url_zoom
             }
           }
         }

@@ -1,5 +1,6 @@
 
 export default function ProductGrid({products, title}) {
+     console.log(products[0].bcBikeData.data.images[0].url_zoom)
      return (<div className="mx-auto mt-10 max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
 
           {title && <h2 className="text-2xl font-bold tracking-tight text-gray-900">{title}</h2>}
@@ -7,10 +8,8 @@ export default function ProductGrid({products, title}) {
             {products.map((product) => (
               <div key={product.id} className="group relative">
                 <div className="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:aspect-none lg:h-80">
-                  {product.images && <img
-                    key={product.images[0].id}
-                    src={product.images[0].url}
-                    alt={product?.imageAlt}
+                  {product.bcBikeData.data.images && <img
+                    src={product.bcBikeData.data.images[0].url_zoom}
                     className="h-full w-full object-cover object-center lg:h-full lg:w-full"
                   />}
                 </div>
@@ -19,12 +18,12 @@ export default function ProductGrid({products, title}) {
                     <h3 className="text-sm text-gray-700">
                       <a href={'/products/' + product.slug}>
                         <span aria-hidden="true" className="absolute inset-0" />
-                        {product.name}
+                        {product.bikeName}
                       </a>
                     </h3>
                     <p className="mt-1 text-sm text-gray-500">{product.color}</p>
                   </div>
-                  <p className="text-sm font-medium text-gray-900">${product.price}</p>
+                  <p className="text-sm font-medium text-gray-900">${product.bcBikeData.data.price}</p>
                 </div>
               </div>
             ))}

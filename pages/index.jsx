@@ -15,7 +15,6 @@ export const getStaticProps = async () => {
 }
 
 const Home = function(props) {
-
   return (
     <>
       <Head>
