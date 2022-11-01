@@ -47,6 +47,7 @@ export async function getProductBySlug(slug) {
         categories
         faunaReviews {
           content
+          name
           productId
           rating
           _ts
