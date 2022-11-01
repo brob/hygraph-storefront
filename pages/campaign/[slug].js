@@ -12,7 +12,6 @@ const CallToAction = ({cta}) => {
   )
 }
 const SimpleGrid = ({stripe}) => {
-  console.log(stripe)
   return (
     <>
       <h1>This is a simple grid</h1>
@@ -23,7 +22,6 @@ const SimpleGrid = ({stripe}) => {
 
 
 export const getStaticProps = async ({params}) => {
-  console.log({params})
 
   const campaign = await getCampaignBySlug(params.slug)
   return {

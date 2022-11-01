@@ -58,11 +58,9 @@ export async function getCategoryBySlug(slug) {
 
       try {
         let {bikeCategory} = await hygraphClient.request(query, {slug})
-        console.log({bikeCategory})
         const products = await hygraphClient.request(productsQuery, {bcId: bikeCategory.bcId})
         const categoryWithProducts = {...bikeCategory, "products": products.bikes}
         
-        console.log({categoryWithProducts})
         return categoryWithProducts
       } catch (error) {
         console.log(error)
