@@ -32,6 +32,6 @@ export default function Page({ category }) {
             description={category.description}
         />
 
-        <ProductGrid  products={category.products} />
+        {category.products && <ProductGrid  products={category.products} />}
     </>)
 }
