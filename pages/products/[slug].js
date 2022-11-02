@@ -31,7 +31,7 @@ export async function getStaticProps({ params }) {
 
 export default function Page({ product, reviews }) {
     const reversedImages = product.images.reverse()
-    console.log(product)
+
     return (<>
         <Head>
             <title>{product.name}</title>
@@ -109,6 +109,7 @@ export default function Page({ product, reviews }) {
                         <h3 className="text-2xl font-bold tracking-tight text-gray-900">Details</h3>
 
                         <table className='min-w-full'>
+                            <tbody>
                                 {product?.bcBikeData.data.custom_fields.map((field) => (
                                 <tr key={field.name} >
                                     <td className='py-2 font-bold text-gray-900'>{field.name}</td>
@@ -116,6 +117,7 @@ export default function Page({ product, reviews }) {
 
                                 </tr>
                                 ))}
+                            </tbody>
                         </table>
                         </>
                     )}
