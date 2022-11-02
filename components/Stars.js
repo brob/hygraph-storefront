@@ -8,7 +8,7 @@ export default function Stars({rating}) {
 
         {[0, 1, 2, 3, 4].map((i) => (
             <StarIcon
-            key={rating}
+            key={i}
             className={classNames(
                 rating > i ? 'text-indigo-900' : 'text-indigo-200',
                 'h-5 w-5 flex-shrink-0'

@@ -1,7 +1,7 @@
 
 const Product = function({product}) {
   const thumbnail = product.bcBikeData.data.images.filter(image => image.is_thumbnail)[0]
-    return (<div key={product.id} className="group relative">
+    return (<div className="group relative">
   <div className="min-h-80 aspect-w-8 aspect-h-5 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 ">
     {thumbnail && <img
       src={thumbnail.url_zoom}
@@ -30,7 +30,7 @@ export default function ProductGrid({products, title}) {
           {title && <h2 className="text-2xl font-bold tracking-tight text-gray-900">{title}</h2>}
           <div className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
             {products.map((product) => (
-              <Product product={product} />
+              <Product key={product.id} product={product} />
             ))}
           </div>
           </div>
