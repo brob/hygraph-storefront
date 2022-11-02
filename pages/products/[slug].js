@@ -26,6 +26,7 @@ export async function getStaticProps({ params }) {
     const reviews = { href: '#', average: 4, totalCount: 117 }
     return {
         props: { product, reviews },
+        revalidate: 60,
     }
 }
 
