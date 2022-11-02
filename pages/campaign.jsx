@@ -7,7 +7,8 @@ export const getStaticProps = async () => {
   return {
     props: {
       'products': products.slice(0, 4)
-    }
+    },
+    revalidate: 60,
   }
 }
 export default function Page(props) {

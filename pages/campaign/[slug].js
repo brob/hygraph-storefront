@@ -27,7 +27,8 @@ export const getStaticProps = async ({params}) => {
   return {
     props: {
       'page': campaign
-    }
+    },
+    revalidate: 60,
   }
 }
 
