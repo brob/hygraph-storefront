@@ -48,6 +48,7 @@ export async function getCategoryBySlug(slug) {
               price
               availability
               images {
+                is_thumbnail
                 url_zoom
               }
             }

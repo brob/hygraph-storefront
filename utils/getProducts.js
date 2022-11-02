@@ -21,6 +21,7 @@ export async function allProducts() {
             price
             availability
             images {
+              is_thumbnail
               url_zoom
             }
           }
@@ -68,6 +69,7 @@ export async function getProductBySlug(slug) {
             }
             images{
               url_zoom
+              is_thumbnail
               url_tiny
               url_standard
               url_thumbnail

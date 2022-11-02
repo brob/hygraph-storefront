@@ -53,6 +53,7 @@ export async function getCampaignBySlug(slug) {
               bcBikeData {
                 data {
                   images {
+                    is_thumbnail
                     url_zoom
                   }
                   price
