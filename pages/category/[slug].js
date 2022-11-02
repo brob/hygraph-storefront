@@ -18,6 +18,7 @@ export async function getStaticProps({ params }) {
     const category = await getCategoryBySlug(params.slug)
     return {
         props: { category },
+        revalidate: 60,
     }
 }
 

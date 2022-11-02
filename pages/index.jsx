@@ -10,7 +10,8 @@ export const getStaticProps = async () => {
   return {
     props: {
       'products': products.slice(0, 4)
-    }
+    },
+
   }
 }
 
