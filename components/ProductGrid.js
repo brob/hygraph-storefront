@@ -2,7 +2,7 @@
 const Product = function({product}) {
   const thumbnail = product.bcBikeData.data.images.filter(image => image.is_thumbnail)[0]
     return (<div key={product.id} className="group relative">
-  <div className="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:aspect-none lg:h-80">
+  <div className="min-h-80 aspect-w-8 aspect-h-5 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 ">
     {thumbnail && <img
       src={thumbnail.url_zoom}
       className="h-full w-full object-cover object-center lg:h-full lg:w-full"
