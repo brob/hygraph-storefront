@@ -30,8 +30,8 @@ export async function getStaticProps({ params }) {
 }
 
 export default function Page({ product, reviews }) {
-    console.log(product.images)
     const reversedImages = product.images.reverse()
+    console.log(product)
     return (<>
         <Head>
             <title>{product.name}</title>
@@ -103,9 +103,23 @@ export default function Page({ product, reviews }) {
                 {/* Description and details */}
                 <div>
                     <h3 className="sr-only">Description</h3>
-                    <div className="space-y-6" dangerouslySetInnerHTML={{__html: product.description}}>
+                    <div className="my-10" dangerouslySetInnerHTML={{__html: product.description}}></div>
+                    { product?.bcBikeData.data.custom_fields && (
+                        <>
+                        <h3 className="text-2xl font-bold tracking-tight text-gray-900">Details</h3>
 
-                    </div>
+                        <table className='min-w-full'>
+                                {product?.bcBikeData.data.custom_fields.map((field) => (
+                                <tr key={field.name} >
+                                    <td className='py-2 font-bold text-gray-900'>{field.name}</td>
+                                    <td className='py-2 text-gray-900'> {field.value}</td>
+
+                                </tr>
+                                ))}
+                        </table>
+                        </>
+                    )}
+                    
                 </div>
             </div>
         </div>

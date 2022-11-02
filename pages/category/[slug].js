@@ -16,7 +16,6 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
     const category = await getCategoryBySlug(params.slug)
-    console.log({category})
     return {
         props: { category },
     }
