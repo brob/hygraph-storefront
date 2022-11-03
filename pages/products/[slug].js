@@ -1,27 +1,36 @@
 // Product detail pages generated from utils/getProducts.js
 // Path: /pages/products/[slug].js
 import Image from 'next/image'
-import ModalImage from "react-modal-image";
+import React from 'react';
+import { Lightbox } from "react-modal-image";
 import { allProducts, getProductBySlug } from '../../utils/getProducts'
 import { StarIcon } from '@heroicons/react/20/solid'
 import Head from 'next/head'
 import Review from '../../components/Review'
 import Stars from '../../components/Stars'
+
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
 function FeaturedImage({aspectWidth, aspectHeight, src}) {
-
+    const [open, setOpen] = React.useState(false)
+    const onClose = () => {
+        setOpen(false)
+      };
     return (<div className={`flex imageWrap block aspect-w-${aspectWidth} aspect-h-${aspectHeight} overflow-hidden rounded-lg`}>
-            <ModalImage
-                hideDownload
-                hideZoom
-                small={src}
-                large={src}
-                className="h-full w-full object-cover object-center"
-            />
-                
+            <img onClick={() => setOpen(true)} src={src} className="object-cover object-center" />
+            {
+                open && (
+                    <Lightbox
+                    hideDownload
+                    hideZoom
+                    onClose={onClose}
+                    small={src}
+                    large={src}
+                    />
+                )
+            } 
         </div>
     )
 }
