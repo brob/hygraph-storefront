@@ -13,7 +13,7 @@ function classNames(...classes) {
 
 function FeaturedImage({aspectWidth, aspectHeight, src}) {
 
-    return (<div className={`block aspect-w-${aspectWidth} aspect-h-${aspectHeight} overflow-hidden rounded-lg`}>
+    return (<div className={`imageWrap block aspect-w-${aspectWidth} aspect-h-${aspectHeight} overflow-hidden rounded-lg`}>
             <ModalImage
                 hideDownload
                 hideZoom
@@ -54,14 +54,16 @@ export default function Page({ product, reviews }) {
             <title>{product.name}</title>
         </Head>
         {(product.images.length > 1) && (<div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-4 lg:gap-x-8 lg:px-8">
-        <div className="col-span-2"><FeaturedImage aspectWidth={5} aspectHeight={4} src={reversedImages[0].url_zoom} /></div>
+        <div className="col-span-2 flex"><FeaturedImage aspectWidth={5} aspectHeight={4} src={reversedImages[0].url_zoom} /></div>
 
             <div className="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
                 <FeaturedImage aspectWidth={3} aspectHeight={2} src={reversedImages[1].url_zoom} />
                 <FeaturedImage aspectWidth={3} aspectHeight={2} src={reversedImages[2].url_zoom} />
             </div>
-            <FeaturedImage aspectWidth={4} aspectHeight={5} src={reversedImages[3].url_zoom} />
-
+            <div className="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
+                <FeaturedImage aspectWidth={3} aspectHeight={2} src={reversedImages[3].url_zoom} />
+                <FeaturedImage aspectWidth={3} aspectHeight={2} src={reversedImages[4].url_zoom} />
+            </div>
         </div>)}
         <div className="mx-auto max-w-2xl px-4 pt-10 pb-16 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pt-16 lg:pb-24">
             <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
