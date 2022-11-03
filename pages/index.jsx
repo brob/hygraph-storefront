@@ -29,10 +29,8 @@ const Home = function(props) {
         large
 
         />
-      <section className='mt-20'>
 
       <ProductGrid title="Featured Products" products={props.products} />
-      </section>
     </>
   )
 }
