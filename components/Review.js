@@ -11,7 +11,7 @@ export default function Review({ review }) {
         <div className="lg:order-1">
             {/* name and date */}
             <p className="text-base text-gray-900 font-semibold">{name}</p>
-            <p className=" text-gray-600 font-light mt-2">{date.toLocaleDateString('en_GB')}</p>
+            <p className=" text-gray-600 font-light mt-2">{date.toLocaleDateString('en-GB')}</p>
         </div>
         <div className="col-span-2 lg:order-3">
             {/* content body */}
