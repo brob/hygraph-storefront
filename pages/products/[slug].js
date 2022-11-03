@@ -1,13 +1,27 @@
 // Product detail pages generated from utils/getProducts.js
 // Path: /pages/products/[slug].js
 import Image from 'next/image'
+import React from 'react';
+import { Lightbox } from "react-modal-image";
 import { allProducts, getProductBySlug } from '../../utils/getProducts'
 import { StarIcon } from '@heroicons/react/20/solid'
 import Head from 'next/head'
 import Review from '../../components/Review'
 import Stars from '../../components/Stars'
+
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
+}
+
+function FeaturedImage({aspectWidth, aspectHeight, src}) {
+    // const [open, setOpen] = React.useState(false)
+    // const onClose = () => {
+    //     setOpen(false)
+    //   };
+    return (<div className={`flex imageWrap block aspect-w-${aspectWidth} aspect-h-${aspectHeight} overflow-hidden rounded-lg`}>
+            <img src={src} className="object-cover object-center" />
+        </div>
+    )
 }
 
 export async function getStaticPaths() {
@@ -37,42 +51,22 @@ export default function Page({ product, reviews }) {
         <Head>
             <title>{product.name}</title>
         </Head>
-        {(product.images.length > 1) && (<div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
-            <div className="aspect-w-3 aspect-h-4 hidden overflow-hidden rounded-lg lg:block">
-                <img
-                    src={reversedImages[0].url_zoom}
-                    className="h-full w-full object-cover object-center"
-                />
+        {(product.images.length > 1) && (<div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-4 lg:gap-x-8 lg:px-8">
+        <div className="col-span-2 flex"><FeaturedImage aspectWidth={5} aspectHeight={4} src={reversedImages[0].url_zoom} /></div>
+
+            <div className="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
+                <FeaturedImage aspectWidth={3} aspectHeight={2} src={reversedImages[1].url_zoom} />
+                <FeaturedImage aspectWidth={3} aspectHeight={2} src={reversedImages[2].url_zoom} />
             </div>
             <div className="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
-                <div className="aspect-w-3 aspect-h-2 overflow-hidden rounded-lg">
-                    <img
-                        src={reversedImages[1].url_zoom}
-                        className="h-full w-full object-cover object-center"
-                    />
-                </div>
-                <div className="aspect-w-3 aspect-h-2 overflow-hidden rounded-lg">
-                    <img
-                        src={reversedImages[2].url_zoom}
-
-                        className="h-full w-full object-cover object-center"
-                    />
-                </div>
-            </div>
-            <div className="aspect-w-4 aspect-h-5 sm:overflow-hidden sm:rounded-lg lg:aspect-w-3 lg:aspect-h-4">
-                <img
-                    src={reversedImages[3].url_zoom}
-                    className="h-full w-full object-cover object-center"
-                />
+                <FeaturedImage aspectWidth={3} aspectHeight={2} src={reversedImages[3].url_zoom} />
+                <FeaturedImage aspectWidth={3} aspectHeight={2} src={reversedImages[4].url_zoom} />
             </div>
         </div>)}
         <div className="mx-auto max-w-2xl px-4 pt-10 pb-16 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pt-16 lg:pb-24">
             <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
                 {(product.images.length === 1) && (
-                    <img
-                        style={{ maxHeight: "300px", width: "auto" }}
-                        src={reversedImages[0].url_zoom}
-                    />
+                    <FeaturedImage aspectWidth={3} aspectHeight={2} src={reversedImages[0].url_zoom} />
                 )}
                 <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">{product.name}</h1>
             </div>
@@ -104,7 +98,7 @@ export default function Page({ product, reviews }) {
                 {/* Description and details */}
                 <div>
                     <h3 className="sr-only">Description</h3>
-                    <div className="my-10" dangerouslySetInnerHTML={{__html: product.description}}></div>
+                    <div className="mb-10" dangerouslySetInnerHTML={{__html: product.description}}></div>
                     { product?.bcBikeData.data.custom_fields && (
                         <>
                         <h3 className="text-2xl font-bold tracking-tight text-gray-900">Details</h3>

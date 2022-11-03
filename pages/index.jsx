@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import Hero from '../components/Hero'
+import {FullHero} from '../components/Hero'
 import Main from '../components/Main'
 import ProductGrid from '../components/ProductGrid'
 import {allProducts} from '../utils/getProducts'
@@ -21,15 +21,16 @@ const Home = function(props) {
       <Head>
         <title>Welcome to the Hygraph Shop</title>
       </Head>
-      <Hero 
+      <FullHero 
         title="The best bikes in multiple styles" 
         description='Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua.'
         button={{text: 'Shop Now', link: '/shop'}}
+        image='/test-photo.jpg'
+        large
+
         />
-      <section className='mt-20'>
 
       <ProductGrid title="Featured Products" products={props.products} />
-      </section>
     </>
   )
 }
