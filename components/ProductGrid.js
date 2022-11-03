@@ -1,3 +1,4 @@
+import Main from "./Main"
 
 const Product = function({product}) {
   const thumbnail = product.bcBikeData.data.images.filter(image => image.is_thumbnail)[0]
@@ -25,7 +26,7 @@ const Product = function({product}) {
 
 
 export default function ProductGrid({products, title}) {
-     return (<div className="mx-auto mt-10 max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
+     return (<Main><div className="mx-auto mt-10 max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
 
           {title && <h2 className="text-2xl font-bold tracking-tight text-gray-900">{title}</h2>}
           <div className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
@@ -33,7 +34,7 @@ export default function ProductGrid({products, title}) {
               <Product key={product.id} product={product} />
             ))}
           </div>
-          </div>
+          </div></Main>
     )
 }
   
