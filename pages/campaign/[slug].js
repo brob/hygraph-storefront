@@ -62,10 +62,10 @@ export const getStaticPaths = async () => {
 
         {page.stripes.map(stripe => {
           if (stripe.__typename === 'CallToAction') {
-            return <CallToAction cta={stripe} />
+            return <CallToAction key={stripe.id} cta={stripe} />
           }
           if (stripe.__typename === 'ProductGrid' && stripe.products.length > 0) {
-            return <ProductGrid title={stripe.headline} products={stripe.products} />
+            return <ProductGrid key={stripe.id} title={stripe.headline} products={stripe.products} />
           }
         })}
 
