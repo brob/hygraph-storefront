@@ -13,7 +13,7 @@ function classNames(...classes) {
 
 function FeaturedImage({aspectWidth, aspectHeight, src}) {
 
-    return (<div className={`imageWrap block aspect-w-${aspectWidth} aspect-h-${aspectHeight} overflow-hidden rounded-lg`}>
+    return (<div className={`flex imageWrap block aspect-w-${aspectWidth} aspect-h-${aspectHeight} overflow-hidden rounded-lg`}>
             <ModalImage
                 hideDownload
                 hideZoom
