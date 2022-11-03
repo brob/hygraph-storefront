@@ -13,15 +13,14 @@ function classNames(...classes) {
 
 function FeaturedImage({aspectWidth, aspectHeight, src}) {
 
-    return(
-        <div className={`aspect-w-${aspectWidth} aspect-h-${aspectHeight} overflow-hidden rounded-lg`}>
+    return (<div className={`block aspect-w-${aspectWidth} aspect-h-${aspectHeight} overflow-hidden rounded-lg`}>
             <ModalImage
                 hideDownload
                 hideZoom
                 small={src}
                 large={src}
                 className="h-full w-full object-cover object-center"
-                />
+            />
                 
         </div>
     )
@@ -54,8 +53,8 @@ export default function Page({ product, reviews }) {
         <Head>
             <title>{product.name}</title>
         </Head>
-        {(product.images.length > 1) && (<div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
-        <FeaturedImage aspectWidth={3} aspectHeight={4} src={reversedImages[0].url_zoom} />
+        {(product.images.length > 1) && (<div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-4 lg:gap-x-8 lg:px-8">
+        <div className="col-span-2"><FeaturedImage aspectWidth={5} aspectHeight={4} src={reversedImages[0].url_zoom} /></div>
 
             <div className="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
                 <FeaturedImage aspectWidth={3} aspectHeight={2} src={reversedImages[1].url_zoom} />
