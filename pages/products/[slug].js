@@ -104,7 +104,7 @@ export default function Page({ product, reviews }) {
                 {/* Description and details */}
                 <div>
                     <h3 className="sr-only">Description</h3>
-                    <div className="my-10" dangerouslySetInnerHTML={{__html: product.description}}></div>
+                    <div className="mb-10" dangerouslySetInnerHTML={{__html: product.description}}></div>
                     { product?.bcBikeData.data.custom_fields && (
                         <>
                         <h3 className="text-2xl font-bold tracking-tight text-gray-900">Details</h3>
