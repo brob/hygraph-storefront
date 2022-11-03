@@ -55,7 +55,7 @@ export const getStaticPaths = async () => {
           title={page.title}
           description={page.description?.text}
           //button={{text: 'Shop Now', url: '/category/hoodies'}}
-          image={page.heroImage ? page.heroImage.url : null}
+          image={page.heroImage ? page.heroImage.secure_url : null}
         />
 
 
