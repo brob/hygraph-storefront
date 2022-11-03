@@ -24,6 +24,7 @@ export async function getCampaignBySlug(slug) {
         description {
           text
         }
+        heroImage
         stripes {
           ... on CallToAction {
             __typename

@@ -130,7 +130,7 @@ export default function Page({ product, reviews }) {
             {product?.faunaReviews?.length > 0 && (<>
                 <h3 id="reviews" className="text-2xl font-bold tracking-tight text-gray-900">Reviews</h3>
                 <div className='grid grid-cols-1 divide-y'>
-                    {product.faunaReviews.map((review) => (
+                    {product?.faunaReviews?.map((review) => (
                         <Review key={review._id} review={review} />
                     ))}
                 </div>
