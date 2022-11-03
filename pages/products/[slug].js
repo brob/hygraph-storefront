@@ -14,23 +14,12 @@ function classNames(...classes) {
 }
 
 function FeaturedImage({aspectWidth, aspectHeight, src}) {
-    const [open, setOpen] = React.useState(false)
-    const onClose = () => {
-        setOpen(false)
-      };
+    // const [open, setOpen] = React.useState(false)
+    // const onClose = () => {
+    //     setOpen(false)
+    //   };
     return (<div className={`flex imageWrap block aspect-w-${aspectWidth} aspect-h-${aspectHeight} overflow-hidden rounded-lg`}>
-            <img onClick={() => setOpen(true)} src={src} className="object-cover object-center" />
-            {
-                open && (
-                    <Lightbox
-                    hideDownload
-                    hideZoom
-                    onClose={onClose}
-                    small={src}
-                    large={src}
-                    />
-                )
-            } 
+            <img src={src} className="object-cover object-center" />
         </div>
     )
 }
