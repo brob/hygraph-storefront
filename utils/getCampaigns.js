@@ -41,6 +41,15 @@ export async function getCampaignBySlug(slug) {
               url
             }
           }
+          ... on Callout {
+            __typename
+            id
+            title
+            button {
+              text
+              url
+            }
+          }
           ... on ProductGrid {
             __typename
             id
