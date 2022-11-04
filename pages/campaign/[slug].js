@@ -1,3 +1,4 @@
+import Layout from '../../components/layouts/Base'
 import Head from "next/head"
 import Hero, { FullHero } from "../../components/Hero"
 import Main from "../../components/Main"
@@ -32,11 +33,12 @@ const Callout = ({stripe}) => {
 
 
 
-export const getStaticProps = async ({params}) => {
+export const getStaticProps = async ({params, preview = false}) => {
 
-  const campaign = await getCampaignBySlug(params.slug)
+  const campaign = await getCampaignBySlug(params.slug, preview)
   return {
     props: {
+      preview,
       'page': campaign
     },
     revalidate: 60,
@@ -55,13 +57,14 @@ export const getStaticPaths = async () => {
 
   }}
 
-  export default function Page({ page }) {
+  export default function Page({ page, preview }) {
 
     return (
       <>
         <Head>
           <title>{page.title}</title>
         </Head>
+
         <FullHero
           title={page.title}
           description={page.description?.text}
@@ -81,7 +84,6 @@ export const getStaticPaths = async () => {
             return <Callout key={stripe.id} stripe={stripe} />
           }
         })}
-
       </>
     )
   }

@@ -41,10 +41,11 @@ export async function allProducts() {
 
 }
 
-export async function getProductBySlug(slug) {
-    const query = gql`query GetSingleBike($slug: String!) {
-      bike(where: {slug: $slug}) {
+export async function getProductBySlug(slug, preview=false) {
+    const query = gql`query GetSingleBike($slug: String!, $stage: Stage!) {
+      bike(where: {slug: $slug}, stage: $stage) {
         bikeName
+        slug
         categories
         faunaReviews {
           content
@@ -86,12 +87,22 @@ export async function getProductBySlug(slug) {
     }
       `
         try {
-            let {bike} = await hygraphClient.request(query, {slug})
+            hygraphClient.setHeader('Authorization', `Bearer ${process.env.HYGRAPH_DEV_AUTH_TOKEN}`)
+
+            let {bike} = await hygraphClient.request(query, {slug, stage: preview ? 'DRAFT' : 'PUBLISHED'})
+            console.log(bike)
             bike.averageRating = averageRating(bike.faunaReviews)
             bike = {...bike, ...bike.bcBikeData.data}
+
             return bike
         } catch (error) {
             console.log(error)
         }
 }
   
+
+export async function getPreviewProductBySlug(slug) {
+  const data = getProductBySlug(slug, true)
+
+  return data
+}
