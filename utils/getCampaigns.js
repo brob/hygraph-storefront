@@ -51,6 +51,7 @@ export async function getCampaignBySlug(slug) {
             products {
               bikeName
               slug
+              id
               bcBikeData {
                 data {
                   images {
