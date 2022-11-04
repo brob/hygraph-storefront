@@ -20,7 +20,7 @@ const Callout = ({stripe}) => {
         {stripe?.title}
       </h2>
       { stripe?.button && (<div className="inline-flex flex-col space-x-0 space-y-3 sm:flex-row sm:items-center sm:space-x-3 sm:space-y-0 mt-10">
-        <a className="text-cornflower border font-medium inline-block rounded-lg text-center transition-all px-4 py-2 text-sm md:text-base bg-white border-transparent text-brand-500 hover:bg-white hover:text-brand-500 hover:!bg-brand-700 hover:!text-white inline-flex items-center" 
+        <a className="text-cornflower border font-medium inline-block rounded-lg text-center transition-all px-4 py-2 text-sm md:text-base bg-white border-transparent text-brand-500 hover:bg-white hover:text-indigo-600  inline-flex items-center" 
           href="{stripe.button.url}" 
           rel="noopener noreferrer" 
           target="_blank">{stripe?.button?.text}</a>
