@@ -69,7 +69,6 @@ export const getStaticPaths = async () => {
           image={page.heroImage ? page.heroImage.secure_url : null}
         />
 
-        <Callout title="Hello world" button={{text: "do something", url: "https://hygraph.com"}} />
 
         {page.stripes.map(stripe => {
           if (stripe.__typename === 'CallToAction') {
