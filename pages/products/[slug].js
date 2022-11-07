@@ -33,18 +33,18 @@ export async function getStaticPaths() {
     return { paths, fallback: false }
 }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({ params, preview = false }) {
 
-    const product = await getProductBySlug(params.slug)
+    const product = await getProductBySlug(params.slug, preview)
 
     const reviews = { href: '#', average: 4, totalCount: 117 }
     return {
-        props: { product, reviews },
+        props: { product, reviews, preview },
         revalidate: 60,
     }
 }
 
-export default function Page({ product, reviews }) {
+export default function Page({ product, reviews, preview }) {
     const reversedImages = product.images.reverse()
 
     return (<>

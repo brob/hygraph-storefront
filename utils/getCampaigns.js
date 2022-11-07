@@ -16,9 +16,10 @@ export async function allCampaigns() {
         }
     }
 
-export async function getCampaignBySlug(slug) {
-    const query = gql`query MyQuery($slug: String) {
-      campaign(where: {slug: $slug}) {
+export async function getCampaignBySlug(slug, preview=false) {
+  console.log({preview})
+    const query = gql`query MyQuery($slug: String, $stage: Stage!) {
+      campaign(where: {slug: $slug}, stage: $stage) {
         title
         slug
         description {
@@ -79,9 +80,18 @@ export async function getCampaignBySlug(slug) {
       `
 
         try {
-            const {campaign} = await hygraphClient.request(query, {slug})
+            hygraphClient.setHeader('Authorization', `Bearer ${process.env.HYGRAPH_DEV_AUTH_TOKEN}`)
+
+            const {campaign} = await hygraphClient.request(query, {slug, stage: preview ? 'DRAFT' : 'PUBLISHED'})
             return campaign
         } catch (error) {
             console.log(error)
         }
+}
+
+export async function getPreviewCampaignBySlug(slug) {
+
+  const data = await getCampaignBySlug(slug, true)
+
+  return data
 }
