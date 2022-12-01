@@ -490,6 +490,11 @@
   "resolved" "https://registry.npmjs.org/object-hash/-/object-hash-3.0.0.tgz"
   "version" "3.0.0"
 
+"p-throttle@^5.0.0":
+  "integrity" "sha512-iXBFjW4kP/5Ivw7uC9EDnj+/xo3pNn4Rws3zgMGPwXnWTv1M3P0LVdZxLrqRUI5JK0Fp3Du0bt6lCaVrI3WF7g=="
+  "resolved" "https://registry.npmjs.org/p-throttle/-/p-throttle-5.0.0.tgz"
+  "version" "5.0.0"
+
 "path-parse@^1.0.7":
   "integrity" "sha512-LDJzPVEEEPR+y48z93A0Ed0yXb8pAByGWo/k5YYdYgpY2/2EsOsksJrq7lOHxryrVOn1ejG6oAp8ahvOIQD8sw=="
   "resolved" "https://registry.npmjs.org/path-parse/-/path-parse-1.0.7.tgz"
