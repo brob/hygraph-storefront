@@ -4,4 +4,8 @@ module.exports = {
   images: {
     domains: ['tailwindui.com'],
   },
+  experimental: {
+    workerThreads: false,
+    cpus: 1
+  },
 }

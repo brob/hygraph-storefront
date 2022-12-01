@@ -113,7 +113,7 @@ export async function getProductBySlug(slug, preview=false) {
             hygraphClient.setHeader('Authorization', `Bearer ${process.env.HYGRAPH_DEV_AUTH_TOKEN}`)
 
             let {bike} = await hygraphClient.request(query, {slug, stage: preview ? 'DRAFT' : 'PUBLISHED'})
-            console.log(bike)
+
             bike.averageRating = averageRating(bike.faunaReviews)
             bike = {...bike, ...bike.bcBikeData.data}
 

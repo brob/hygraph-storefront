@@ -17,8 +17,8 @@ export async function allCampaigns() {
     }
 
 export async function getCampaignBySlug(slug, preview=false) {
-  console.log({preview})
-    const query = gql`query MyQuery($slug: String, $stage: Stage!) {
+
+  const query = gql`query MyQuery($slug: String, $stage: Stage!) {
       campaign(where: {slug: $slug}, stage: $stage) {
         title
         slug
