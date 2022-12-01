@@ -3,10 +3,10 @@ import Image from 'next/image'
 import {FullHero} from '../components/Hero'
 import Main from '../components/Main'
 import ProductGrid from '../components/ProductGrid'
-import {allProducts} from '../utils/getProducts'
+import {allProducts, getSomeProducts} from '../utils/getProducts'
 
 export const getStaticProps = async () => {
-  const products = await allProducts()
+  const products = await getSomeProducts(4)
   return {
     props: {
       'products': products.slice(0, 4)

@@ -8,31 +8,54 @@ function averageRating(reviews) {
   return Math.floor(total / reviews.length)
 }
 
+export async function getSomeProducts(count = 4) {
+
+  const query = gql`
+  query GetSomeBikes($count: Int!) {
+  bikes(first: $count) {
+    bikeName
+    id
+    slug
+    bcBikeData {
+      data {
+        name
+        price
+        availability
+        images {
+          is_thumbnail
+          url_zoom
+        }
+      }
+    }
+  }
+}
+`
+
+try {
+  const {bikes} = await hygraphClient.request(query, {count})
+  
+  return bikes
+} catch (error) {
+  console.log(error)
+}
+
+}
+
 export async function allProducts() {
-    const query = gql`query GetAllBikes {
+    const query = gql`query GetAllSlugs {
       bikes
       {
         bikeName
         id
         slug
-        bcBikeData{
-          data{
-            name
-            price
-            availability
-            images {
-              is_thumbnail
-              url_zoom
-            }
-          }
-        }
+        
       }
     }
       `
 
         try {
             const {bikes} = await hygraphClient.request(query)
-
+            
             return bikes
         } catch (error) {
             console.log(error)
