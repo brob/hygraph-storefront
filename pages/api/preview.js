@@ -16,7 +16,6 @@ export default async function handler(req, res) {
   }
   if (req.query.model === 'products') {
     data = await getPreviewProductBySlug(req.query.slug)
-    console.log({data})
   }
   // If the slug doesn't exist prevent preview mode from being enabled
   if (!data) {

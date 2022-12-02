@@ -8,31 +8,54 @@ function averageRating(reviews) {
   return Math.floor(total / reviews.length)
 }
 
+export async function getSomeProducts(count = 4) {
+
+  const query = gql`
+  query GetSomeBikes($count: Int!) {
+  bikes(first: $count) {
+    bikeName
+    id
+    slug
+    bcBikeData {
+      data {
+        name
+        price
+        availability
+        images {
+          is_thumbnail
+          url_zoom
+        }
+      }
+    }
+  }
+}
+`
+
+try {
+  const {bikes} = await hygraphClient.request(query, {count})
+  
+  return bikes
+} catch (error) {
+  console.log(error)
+}
+
+}
+
 export async function allProducts() {
-    const query = gql`query GetAllBikes {
+    const query = gql`query GetAllSlugs {
       bikes
       {
         bikeName
         id
         slug
-        bcBikeData{
-          data{
-            name
-            price
-            availability
-            images {
-              is_thumbnail
-              url_zoom
-            }
-          }
-        }
+        
       }
     }
       `
 
         try {
             const {bikes} = await hygraphClient.request(query)
-
+            
             return bikes
         } catch (error) {
             console.log(error)
@@ -90,7 +113,7 @@ export async function getProductBySlug(slug, preview=false) {
             hygraphClient.setHeader('Authorization', `Bearer ${process.env.HYGRAPH_DEV_AUTH_TOKEN}`)
 
             let {bike} = await hygraphClient.request(query, {slug, stage: preview ? 'DRAFT' : 'PUBLISHED'})
-            console.log(bike)
+
             bike.averageRating = averageRating(bike.faunaReviews)
             bike = {...bike, ...bike.bcBikeData.data}
 
