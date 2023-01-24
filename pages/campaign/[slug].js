@@ -9,7 +9,7 @@ import { allCampaigns, getCampaignBySlug } from "../../utils/getCampaigns"
 const CallToAction = ({cta}) => {
   const { body, heading, button, image } = cta
   return ( 
-      <Hero description={body.text} title={heading} button={button} image={image?.url} />
+      <Hero description={body?.text} title={heading} button={button} image={image?.url} />
   )
 }
 const Callout = ({stripe}) => {
