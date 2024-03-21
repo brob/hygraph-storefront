@@ -70,14 +70,7 @@ export async function getProductBySlug(slug, preview=false) {
         bikeName
         slug
         categories
-        faunaReviews {
-          content
-          name
-          productId
-          rating
-          _ts
-          _id
-        }
+        
         bcBikeData{
           data{
             name
@@ -114,7 +107,6 @@ export async function getProductBySlug(slug, preview=false) {
 
             let {bike} = await hygraphClient.request(query, {slug, stage: preview ? 'DRAFT' : 'PUBLISHED'})
 
-            bike.averageRating = averageRating(bike.faunaReviews)
             bike = {...bike, ...bike.bcBikeData.data}
 
             return bike
