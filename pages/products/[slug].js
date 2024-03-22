@@ -36,7 +36,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params, preview = false }) {
 
     const product = await getProductBySlug(params.slug, preview)
-
+    
     const reviews = { href: '#', average: 4, totalCount: 117 }
     return {
         props: { product, reviews, preview },
@@ -75,17 +75,7 @@ export default function Page({ product, reviews, preview }) {
             <div className="mt-4 lg:row-span-3 lg:mt-0">
                 <h2 className="sr-only">Product information</h2>
                 <p className="text-3xl tracking-tight text-gray-900">${product?.price}</p>
-                {/* Reviews */}
-                <div className="mt-6">
-                    <h3 className="text-2xl font-bold tracking-tight text-gray-900">Reviews</h3>
-                    <div className="flex items-center">
-                        <Stars rating={product?.averageRating} />
-                        <p className="sr-only">{reviews.average} out of 5 stars</p>
-                        <a href="#reviews" className="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500">
-                            {product?.faunaReviews?.length} reviews
-                        </a>
-                    </div>
-                </div>
+                
                 <button
                     type="submit"
                     className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
@@ -120,15 +110,6 @@ export default function Page({ product, reviews, preview }) {
                 </div>
             </div>
         </div>
-        <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
-            {product?.faunaReviews?.length > 0 && (<>
-                <h3 id="reviews" className="text-2xl font-bold tracking-tight text-gray-900">Reviews</h3>
-                <div className='grid grid-cols-1 divide-y'>
-                    {product?.faunaReviews?.map((review) => (
-                        <Review key={review._id} review={review} />
-                    ))}
-                </div>
-            </>)}
-        </div>
+        
     </>)
 }
